@@ -52,19 +52,19 @@ public class MoveRectTransformWithArrows : UnityEditor.Editor
         switch (e.keyCode)
         {
             case KeyCode.UpArrow:
-                Undo.RecordObject(_targetTransf, UndoName);
+                RecordUndo();
                 MoveRect(_targetTransf, 0f, Shift);
                 return true;
             case KeyCode.DownArrow:
-                Undo.RecordObject(_targetTransf, UndoName);
+                RecordUndo();
                 MoveRect(_targetTransf, 0f, -Shift);
                 return true;
             case KeyCode.LeftArrow:
-                Undo.RecordObject(_targetTransf, UndoName);
+                RecordUndo();
                 MoveRect(_targetTransf, -Shift, 0f);
                 return true;
             case KeyCode.RightArrow:
-                Undo.RecordObject(_targetTransf, UndoName);
+                RecordUndo();
                 MoveRect(_targetTransf, Shift, 0f);
                 return true;
         }
@@ -72,6 +72,8 @@ public class MoveRectTransformWithArrows : UnityEditor.Editor
         return false;
     }
 
+    private void RecordUndo() => Undo.RecordObject(_targetTransf, UndoName);
+    
     private static void MoveRect(Transform rect, float x, float y)
     {
         rect.localPosition += new Vector3(x, y);
