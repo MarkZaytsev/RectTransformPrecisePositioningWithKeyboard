@@ -79,4 +79,8 @@ public class MoveRectTransformWithArrows : UnityEditor.Editor
         rect.localPosition += new Vector3(x, y);
         EditorUtility.SetDirty(rect);
     }
+
+    private void OnDisable() => DestroyImmediate(_editorInstance);
+
+    private void OnDestroy() => DestroyImmediate(_editorInstance);
 }
